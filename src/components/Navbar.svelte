@@ -79,9 +79,9 @@
           </nav>
 
           <!-- Resume Button -->
-          {#if portfolio.personal.resume}
+          {#if portfolio.resume || portfolio.personal?.resume}
             <a
-              href={portfolio.personal.resume}
+              href={portfolio.resume || portfolio.personal?.resume}
               target="_blank"
               rel="noopener noreferrer"
               class="btn-secondary text-sm px-6 py-2"
@@ -138,10 +138,10 @@
             </button>
           {/each}
 
-          {#if portfolio.personal.resume}
+          {#if portfolio.resume || portfolio.personal?.resume}
             <div class="pt-2">
               <a
-                href={portfolio.personal.resume}
+                href={portfolio.resume || portfolio.personal?.resume}
                 target="_blank"
                 rel="noopener noreferrer"
                 class="block w-full btn-secondary text-center"

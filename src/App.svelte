@@ -24,8 +24,13 @@
     <Navbar {portfolio} />
     
     <main class="container-custom pt-20">
-      <Hero {portfolio} />
-      <About {portfolio} />
+      {#if portfolio.hero}
+        <Hero {portfolio} />
+      {/if}
+      
+      {#if portfolio.about}
+        <About {portfolio} />
+      {/if}
       
       {#if portfolio.experience && portfolio.experience.length > 0}
         <Experience {portfolio} />
@@ -35,11 +40,13 @@
         <Projects {portfolio} />
       {/if}
       
-      <Contact {portfolio} />
+      {#if portfolio.contact}
+        <Contact {portfolio} />
+      {/if}
     </main>
     
     <footer class="py-6 text-center text-muted-foreground text-sm">
-      <p>© {new Date().getFullYear()} {portfolio.personal.name}. All rights reserved.</p>
+      <p>© {new Date().getFullYear()} {portfolio.personal?.name || ''}. All rights reserved.</p>
     </footer>
   </div>
 </div>
