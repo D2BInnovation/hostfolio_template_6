@@ -4,6 +4,13 @@
 
   export let portfolio: PortfolioData;
 
+  $: navItems = [
+    ...(portfolio.about ? [{ id: 'about', label: 'About' }] : []),
+    ...(portfolio.experience?.length ? [{ id: 'experience', label: 'Experience' }] : []),
+    ...(portfolio.projects?.length ? [{ id: 'projects', label: 'Projects' }] : []),
+    ...(portfolio.contact ? [{ id: 'contact', label: 'Contact' }] : [])
+  ];
+
   let isScrolled = false;
   let isMobileMenuOpen = false;
   let activeSection = '';
@@ -58,12 +65,7 @@
         <!-- Desktop Navigation -->
         <div class="hidden md:flex items-center gap-8">
           <nav class="flex items-center gap-6">
-            {#each [
-              { id: 'about', label: 'About' },
-              { id: 'experience', label: 'Experience' },
-              { id: 'projects', label: 'Projects' },
-              { id: 'contact', label: 'Contact' }
-            ] as item}
+            {#each navItems as item}
               <button
                 on:click={() => scrollToSection(item.id)}
                 class="relative px-3 py-2 text-sm font-medium transition-colors duration-300 hover:text-primary {activeSection === item.id ? 'text-primary' : 'text-white/70'}"
@@ -123,12 +125,7 @@
         class:max-h-0={!isMobileMenuOpen}
       >
         <div class="pt-4 pb-2 space-y-2">
-          {#each [
-            { id: 'about', label: 'About' },
-            { id: 'experience', label: 'Experience' },
-            { id: 'projects', label: 'Projects' },
-            { id: 'contact', label: 'Contact' }
-          ] as item}
+          {#each navItems as item}
             <button
               on:click={() => scrollToSection(item.id)}
               class="block w-full text-left px-4 py-3 text-white/80 hover:text-primary hover:bg-white/5 rounded-lg transition-all duration-300"

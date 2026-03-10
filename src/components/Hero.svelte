@@ -56,8 +56,8 @@
       <!-- Main Title -->
       <div class="animate-slide-up opacity-0 mb-6" class:opacity-100={isVisible} style="animation-delay: 0.2s; animation-fill-mode: forwards">
         <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight">
-          <span class="block text-gradient mb-2">Creative</span>
-          <span class="block text-white">Designer & Developer</span>
+          <span class="block text-gradient mb-2">{portfolio.personal?.name || 'Creative'}</span>
+          <span class="block text-white">{portfolio.personal?.title || 'Designer & Developer'}</span>
         </h1>
       </div>
 
@@ -70,18 +70,18 @@
 
       <!-- CTA Buttons -->
       <div class="animate-bounce-in opacity-0 flex flex-col sm:flex-row gap-4 justify-center items-center" class:opacity-100={isVisible} style="animation-delay: 0.4s; animation-fill-mode: forwards">
-        <a href={portfolio.hero.primaryButton.link} class="btn-primary group relative overflow-hidden">
+        <a href={portfolio.hero.primaryButton?.link || '#'} class="btn-primary group relative overflow-hidden">
           <span class="relative flex items-center gap-2">
-            {portfolio.hero.primaryButton.text}
+            {portfolio.hero.primaryButton?.text || 'Explore'}
             <svg class="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
             </svg>
           </span>
         </a>
 
-        <a href={portfolio.hero.secondaryButton.link} class="btn-secondary group">
+        <a href={portfolio.hero.secondaryButton?.link || '#'} class="btn-secondary group">
           <span class="flex items-center gap-2">
-            {portfolio.hero.secondaryButton.text}
+            {portfolio.hero.secondaryButton?.text || 'Contact'}
             <svg class="w-5 h-5 transition-transform group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
             </svg>
@@ -91,12 +91,16 @@
 
       <!-- Scroll Indicator -->
       <div class="animate-fade-in opacity-0 fixed bottom-8 left-1/2 -translate-x-1/2 z-20" class:opacity-100={isVisible} style="animation-delay: 0.8s; animation-fill-mode: forwards">
-        <div class="flex flex-col items-center gap-3 cursor-pointer hover:scale-110 transition-transform duration-300" on:click={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}>
+        <button 
+          class="flex flex-col items-center gap-3 cursor-pointer hover:scale-110 transition-transform duration-300 bg-transparent border-none outline-none" 
+          on:click={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
+          aria-label="Scroll to about section"
+        >
           <span class="text-xs font-bold text-primary uppercase tracking-widest animate-pulse">Scroll</span>
           <div class="w-6 h-10 border-2 border-primary/60 rounded-full flex justify-center hover:border-primary transition-colors">
             <div class="w-1.5 h-2 bg-primary rounded-full mt-2 animate-bounce"></div>
           </div>
-        </div>
+        </button>
       </div>
     </div>
   </div>

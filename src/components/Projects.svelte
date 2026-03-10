@@ -51,8 +51,6 @@
           class="group relative animate-bounce-in opacity-0 overflow-hidden"
           class:opacity-100={isVisible}
           style="animation-delay: {0.3 + index * 0.1}s; animation-fill-mode: forwards"
-          on:mouseenter={() => hoveredIndex = index}
-          on:mouseleave={() => hoveredIndex = null}
         >
           <div class="glass-card glass-card-hover h-full flex flex-col overflow-hidden hover-lift">
             <!-- Project Image/Visual Header -->
@@ -148,12 +146,14 @@
     <div class="mt-24 text-center animate-fade-in opacity-0" class:opacity-100={isVisible} style="animation-delay: 1.2s; animation-fill-mode: forwards">
       <div class="glass-card p-12 md:p-16 max-w-2xl mx-auto">
         <p class="text-xl md:text-2xl text-white mb-8 font-semibold">Ready to bring your ideas to life?</p>
-        <a href="#contact" class="btn-primary inline-flex items-center justify-center gap-2 px-10 py-4 text-lg">
-          Let's Collaborate
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-          </svg>
-        </a>
+        {#if portfolio.contact}
+          <a href="#contact" class="btn-primary inline-flex items-center justify-center gap-2 px-10 py-4 text-lg">
+            Let's Collaborate
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+            </svg>
+          </a>
+        {/if}
       </div>
     </div>
   </div>
